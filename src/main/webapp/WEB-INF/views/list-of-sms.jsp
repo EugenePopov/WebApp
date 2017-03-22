@@ -16,12 +16,13 @@
 <table border="1px" cellpadding="0" cellspacing="0" >
     <thead>
     <tr>
-        <th width="10%">Message</th><th width="15%">Address</th><th width="10%">Date</th>
+        <th width="10%">ID<th width="10%">Message</th><th width="15%">Address</th><th width="10%">Date</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="sms" items="${smsList}">
         <tr>
+            <td>${sms.id}</td>
             <td>${sms.message}</td>
             <td>${sms.address}</td>
             <td>${sms.date}</td>

@@ -18,10 +18,10 @@ public class HomeController {
 	@Autowired
 	private SmsService smsService;
 
-	@RequestMapping(value="/" )
+	@RequestMapping(value="/sms" )
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 
-		ModelAndView mv = new ModelAndView("list-of-teams");
+		ModelAndView mv = new ModelAndView("list-of-sms");
 		List<SmsEntity> smsList = smsService.getAllSms();
 		mv.addObject("smsList", smsList);
 

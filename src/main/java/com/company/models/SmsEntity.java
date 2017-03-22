@@ -1,27 +1,37 @@
 package com.company.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "sms")
 public class SmsEntity {
-    private int id;
-    private String address;
-    public String message;
-    private String date;
 
     @Id
     @GeneratedValue
+    private int id;
+
+    @Column(name = "address")
+    private String address;
+    @Column(name = "message")
+    private String message;
+    @Column(name = "date")
+    private String date;
+
+/*    @SuppressWarnings("unused")
+    private SmsEntity() {
+        // For hibernate.
+    }*/
+
+/*    public SmsEntity(int id) {
+        Assert.notNull(id, "Id should not be null");
+        this.id = id;
+    }*/
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -30,7 +40,6 @@ public class SmsEntity {
         this.address = address;
     }
 
-    @Basic
     @Column(name = "message")
     public String getMessage() {
         return message;
@@ -40,7 +49,6 @@ public class SmsEntity {
         this.message = message;
     }
 
-    @Basic
     @Column(name = "date")
     public String getDate() {
         return date;
@@ -50,28 +58,27 @@ public class SmsEntity {
         this.date = date;
     }
 
-    @SuppressWarnings("RedundantIfStatement")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object other) {
 
-        SmsEntity smsEntity = (SmsEntity) o;
+        if (this == other) {
+            return true;
+        }
+        //noinspection SimplifiableIfStatement
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
 
-        if (id != smsEntity.id) return false;
-        if (address != null ? !address.equals(smsEntity.address) : smsEntity.address != null) return false;
-        if (message != null ? !message.equals(smsEntity.message) : smsEntity.message != null) return false;
-        if (date != null ? !date.equals(smsEntity.date) : smsEntity.date != null) return false;
+        return Objects.equals(this.id, ((SmsEntity) other).getId()) &&
+                Objects.equals(this.address, ((SmsEntity) other).getAddress()) &&
+                Objects.equals(this.message, ((SmsEntity) other).getMessage()) &&
+                Objects.equals(this.date, ((SmsEntity) other).getDate());
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (message != null ? message.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, address, message, date);
     }
 }
