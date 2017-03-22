@@ -9,26 +9,19 @@ public class SmsEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     @Column(name = "address")
     private String address;
     @Column(name = "message")
     private String message;
-    @Column(name = "date")
+    @Column(name = "sms_date")
     private String date;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "report_id", nullable = false)
+    private ReportEntity report;
 
-/*    @SuppressWarnings("unused")
-    private SmsEntity() {
-        // For hibernate.
-    }*/
-
-/*    public SmsEntity(int id) {
-        Assert.notNull(id, "Id should not be null");
-        this.id = id;
-    }*/
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -49,7 +42,7 @@ public class SmsEntity {
         this.message = message;
     }
 
-    @Column(name = "date")
+    @Column(name = "sms_date")
     public String getDate() {
         return date;
     }
@@ -76,9 +69,27 @@ public class SmsEntity {
 
     }
 
+    public ReportEntity getReport() {
+        return this.report;
+    }
+
+    public void setStock(ReportEntity report) {
+        this.report = report;
+    }
+
     @Override
     public int hashCode() {
 
         return Objects.hash(id, address, message, date);
+    }
+
+    @Override
+    public String toString() {
+        return "SmsEntity{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", message='" + message + '\'' +
+                ", date='" + date + '\'' +
+                '}';
     }
 }
