@@ -65,4 +65,10 @@ public class WebAppConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
+
+    //TODO: test class for json schema validator
+    //TODO: json schema validator
+    //TODO:
+    //TODO:
+
 }
