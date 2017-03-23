@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://example.com/root.json",
+  "properties": {
+    "contacs": {
+      "id": "http://example.com/root.json/contacs",
+      "items": {
+        "id": "http://example.com/root.json/contacs/0",
+        "properties": {
+          "name": {
+            "default": "Peter",
+            "description": "An explanation about the purpose of this instance.",
+            "id": "http://example.com/root.json/contacs/0/name",
+            "title": "The Name schema.",
+            "type": "string"
+          },
+          "numbers": {
+            "id": "http://example.com/root.json/contacs/0/numbers",
+            "items": {
+              "id": "http://example.com/root.json/contacs/0/numbers/0",
+              "properties": {
+                "number": {
+                  "default": "022566335",
+                  "description": "An explanation about the purpose of this instance.",
+                  "id": "http://example.com/root.json/contacs/0/numbers/0/number",
+                  "title": "The Number schema.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "date": {
+      "default": "2017-03-22",
+      "description": "An explanation about the purpose of this instance.",
+      "id": "http://example.com/root.json/date",
+      "title": "The Date schema.",
+      "type": "string"
+    },
+    "sms": {
+      "id": "http://example.com/root.json/sms",
+      "items": {
+        "id": "http://example.com/root.json/sms/0",
+        "properties": {
+          "address": {
+            "default": "078711930",
+            "description": "An explanation about the purpose of this instance.",
+            "id": "http://example.com/root.json/sms/0/address",
+            "title": "The Address schema.",
+            "type": "string"
+          },
+          "date": {
+            "default": "2017-03-22 16:31:17",
+            "description": "An explanation about the purpose of this instance.",
+            "id": "http://example.com/root.json/sms/0/date",
+            "title": "The Date schema.",
+            "type": "string"
+          },
+          "message": {
+            "default": "Hello",
+            "description": "An explanation about the purpose of this instance.",
+            "id": "http://example.com/root.json/sms/0/message",
+            "title": "The Message schema.",
+            "type": "string"
+          },
+          "smsType": {
+            "default": "incoming",
+            "description": "An explanation about the purpose of this instance.",
+            "id": "http://example.com/root.json/sms/0/smsType",
+            "title": "The Smstype schema.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

@@ -11,7 +11,7 @@ import com.company.service.ReportService;
 import com.company.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -32,7 +32,7 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value="/report" )
+	@RequestMapping(value="/report", method = RequestMethod.GET )
 	public ModelAndView report(HttpServletResponse response) throws IOException{
 
 		ModelAndView mv = new ModelAndView("report");
@@ -40,5 +40,20 @@ public class HomeController {
 		mv.addObject("reports", reports);
 
 		return mv;
+	}
+
+	@RequestMapping(value="/report", method= RequestMethod.POST)
+	public ModelAndView edditingTeam(@RequestBody String httpBody) {
+
+		ModelAndView modelAndView = new ModelAndView("report");
+
+		//teamService.updateTeam(team);
+
+		String body = httpBody;
+
+		String message = "Team was successfully edited.";
+		//modelAndView.addObject("message", message);
+
+		return modelAndView;
 	}
 }
