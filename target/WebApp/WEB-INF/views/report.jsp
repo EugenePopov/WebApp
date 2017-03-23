@@ -13,7 +13,7 @@
 <body>
 
 <h1>Reports</h1>
-<p> ${reports.get(0).toString()}</p>
+<p><pre> ${reports.get(0).toString()}</pre></p>
 
 </body>
 </html>

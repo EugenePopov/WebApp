@@ -13,11 +13,17 @@ public class SmsEntity {
 
     @Column(name = "address")
     private String address;
+
     @Column(name = "message")
     private String message;
+
     @Column(name = "sms_date")
     private String date;
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @Column(name = "sms_type")
+    private String smsType;
+
+    @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
     private ReportEntity report;
 
@@ -33,7 +39,6 @@ public class SmsEntity {
         this.address = address;
     }
 
-    @Column(name = "message")
     public String getMessage() {
         return message;
     }
@@ -42,13 +47,20 @@ public class SmsEntity {
         this.message = message;
     }
 
-    @Column(name = "sms_date")
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSmsType() {
+        return smsType;
+    }
+
+    public void setSmsType(String smsType) {
+        this.smsType = smsType;
     }
 
     @Override
@@ -65,7 +77,8 @@ public class SmsEntity {
         return Objects.equals(this.id, ((SmsEntity) other).getId()) &&
                 Objects.equals(this.address, ((SmsEntity) other).getAddress()) &&
                 Objects.equals(this.message, ((SmsEntity) other).getMessage()) &&
-                Objects.equals(this.date, ((SmsEntity) other).getDate());
+                Objects.equals(this.date, ((SmsEntity) other).getDate()) &&
+                Objects.equals(this.smsType, ((SmsEntity) other).getSmsType());
 
     }
 
@@ -80,16 +93,17 @@ public class SmsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, address, message, date);
+        return Objects.hash(id, address, message, date, smsType);
     }
 
     @Override
     public String toString() {
-        return "SmsEntity{" +
-                "id=" + id +
-                ", address='" + address + '\'' +
-                ", message='" + message + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+        return "\n\t\tSmsEntity{\n" +
+                "\t\t\tid=" + id + ",\n" +
+                "\t\t\taddress='" + address + '\'' + ",\n" +
+                "\t\t\tmessage='" + message + '\'' + ",\n" +
+                "\t\t\tdate='" + date + '\'' + "\n" +
+                "\t\t\tsmsType='" + smsType + '\'' + "\n" +
+                "\t\t}";
     }
 }

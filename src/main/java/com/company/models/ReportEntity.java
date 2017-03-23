@@ -1,5 +1,11 @@
 package com.company.models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -18,8 +24,13 @@ public class ReportEntity {
     @Column(name = "report_date", columnDefinition = "DATETIME")
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "report", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "report")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<SmsEntity> smsEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "report")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<ContactEntity> contactEntities = new ArrayList<>();
 
 
     public long getId() {
@@ -57,12 +68,14 @@ public class ReportEntity {
         return Objects.hash(id, date);
     }
 
+    @Transactional
     @Override
     public String toString() {
-        return "ReportEntity{" +
-                "id=" + id +
-                ", date=" + date +
-                ", smsEntities=" + smsEntities +
+        return "ReportEntity{\n" +
+                "\tid=" + id + ",\n" +
+                "\tdate=" + date + ",\n" +
+                "\tsmsEntities=" + smsEntities + ",\n" +
+                "\tcontactEntities=" + contactEntities + "\n" +
                 '}';
     }
 }
