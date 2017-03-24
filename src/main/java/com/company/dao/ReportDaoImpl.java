@@ -22,4 +22,9 @@ public class ReportDaoImpl implements ReportDao{
     public List<ReportEntity> getReports(){
         return getCurrentSession().createQuery("from ReportEntity ").list();
     }
+
+    @Override
+    public void saveReport(ReportEntity report) {
+        getCurrentSession().save(report);
+    }
 }

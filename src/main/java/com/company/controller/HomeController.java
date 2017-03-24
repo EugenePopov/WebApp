@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.company.models.ReportEntity;
 import com.company.models.SmsEntity;
 import com.company.service.ReportService;
+import com.company.service.ReportUnmarshallerImpl;
 import com.company.service.SmsService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,22 +41,20 @@ public class HomeController {
 
 		ModelAndView mv = new ModelAndView("report");
 		List<ReportEntity> reports = reportService.getReports();
+
 		mv.addObject("reports", reports);
 
 		return mv;
 	}
 
+
+	//TODO: Try to wire objects via Spring context
 	@RequestMapping(value="/report", method= RequestMethod.POST)
-	public ModelAndView edditingTeam(@RequestBody String httpBody) {
+	public ModelAndView editingTeam(@RequestBody String httpBody) {
 
 		ModelAndView modelAndView = new ModelAndView("report");
 
-		//teamService.updateTeam(team);
-
-		String body = httpBody;
-
-		String message = "Team was successfully edited.";
-		//modelAndView.addObject("message", message);
+		reportService.putReport(httpBody);
 
 		return modelAndView;
 	}

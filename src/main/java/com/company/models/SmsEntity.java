@@ -1,5 +1,7 @@
 package com.company.models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,6 +11,7 @@ public class SmsEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "id", unique = true, nullable = false)
     private long id;
 
     @Column(name = "address")
@@ -26,6 +29,10 @@ public class SmsEntity {
     @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
     private ReportEntity report;
+
+    public SmsEntity(){
+        this.report = new ReportEntity();
+    }
 
     public long getId() {
         return id;

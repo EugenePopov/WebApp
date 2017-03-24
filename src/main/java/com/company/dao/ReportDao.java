@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ReportDao {
     List<ReportEntity> getReports();
+    void saveReport(ReportEntity report);
 }

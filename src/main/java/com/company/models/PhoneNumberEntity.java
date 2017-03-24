@@ -15,6 +15,10 @@ public class PhoneNumberEntity {
     @JoinColumn(name = "contact_id", nullable = false)
     private ContactEntity contactEntity;
 
+    public PhoneNumberEntity(){
+        this.contactEntity = new ContactEntity();
+    }
+
 
     public String getNumber() {
         return number;

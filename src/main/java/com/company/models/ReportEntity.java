@@ -1,5 +1,6 @@
 package com.company.models;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -22,13 +23,13 @@ public class ReportEntity {
     private long id;
 
     @Column(name = "report_date", columnDefinition = "DATETIME")
-    private Date date;
+    private String date;
 
-    @OneToMany(mappedBy = "report")
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<SmsEntity> smsEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "report")
+    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<ContactEntity> contactEntities = new ArrayList<>();
 
@@ -38,12 +39,28 @@ public class ReportEntity {
     }
 
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setSmsEntities(List<SmsEntity> smsEntities) {
+        this.smsEntities = smsEntities;
+    }
+
+    public void setContactEntities(List<ContactEntity> contactEntities) {
+        this.contactEntities = contactEntities;
+    }
+
+    public List<SmsEntity> getSmsEntities() {
+        return smsEntities;
+    }
+
+    public List<ContactEntity> getContactEntities() {
+        return contactEntities;
     }
 
     @Override

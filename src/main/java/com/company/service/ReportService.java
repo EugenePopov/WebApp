@@ -8,4 +8,5 @@ import java.util.List;
 public interface ReportService {
 
     List<ReportEntity> getReports();
+    void putReport(String json);
 }

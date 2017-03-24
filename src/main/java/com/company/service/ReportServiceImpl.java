@@ -18,4 +18,12 @@ public class ReportServiceImpl implements ReportService{
     public List<ReportEntity> getReports() {
         return reportDao.getReports();
     }
+
+    @Override
+    public void putReport(String json) {
+        ReportUnmarshaller unmarshaller = new ReportUnmarshallerImpl();
+        ReportEntity report = unmarshaller.unmarshall(json);
+
+        reportDao.saveReport(report);
+    }
 }
