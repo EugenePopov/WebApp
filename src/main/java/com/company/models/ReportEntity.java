@@ -13,13 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "reports")
 public class ReportEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id", unique = true)
     private long id;
 
     @Column(name = "report_date", columnDefinition = "DATETIME")
@@ -33,11 +35,9 @@ public class ReportEntity {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<ContactEntity> contactEntities = new ArrayList<>();
 
-
     public long getId() {
         return id;
     }
-
 
     public String getDate() {
         return date;

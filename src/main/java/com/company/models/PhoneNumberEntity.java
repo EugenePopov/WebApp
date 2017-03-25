@@ -3,13 +3,19 @@ package com.company.models;
 import javax.persistence.*;
 import java.util.Objects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "phone_numbers")
 public class PhoneNumberEntity {
 
-    @Id
-    @Column(name = "number")
+
     private String number;
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "number_id", unique = true)
+    private long id;
 
     @ManyToOne()
     @JoinColumn(name = "contact_id", nullable = false)
@@ -26,6 +32,10 @@ public class PhoneNumberEntity {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public void setContactEntity(ContactEntity contactEntity) {
+        this.contactEntity = contactEntity;
     }
 
     @Override
@@ -53,6 +63,7 @@ public class PhoneNumberEntity {
     public String toString() {
         return "\n\t\t\tPhoneNumberEntity{\n" +
                 "\t\t\t\tnumber='" + number + '\'' + "\n" +
+                "\t\t\t\tid='" + id + '\'' + "\n" +
                 "\t\t\t}";
     }
 }

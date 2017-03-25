@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//TODO: service vs transactional
+
 @Service
-@org.springframework.transaction.annotation.Transactional()
+@org.springframework.transaction.annotation.Transactional
 public class ReportServiceImpl implements ReportService{
 
     @Autowired

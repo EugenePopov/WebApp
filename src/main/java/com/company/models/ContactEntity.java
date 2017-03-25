@@ -1,8 +1,6 @@
 package com.company.models;
 
-import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.*;
-
 import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "contacts")
 public class ContactEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true)
     private int id;
 
     @Column(name = "name")
@@ -31,8 +31,8 @@ public class ContactEntity {
     @LazyCollection(LazyCollectionOption.FALSE)
     List<PhoneNumberEntity> phoneNumberEntities = new ArrayList<>();
 
-    public ContactEntity(){
-        this.report = new ReportEntity();
+    public void setReport(ReportEntity report) {
+        this.report = report;
     }
 
     public int getId() {
@@ -50,7 +50,6 @@ public class ContactEntity {
     public void setPhoneNumberEntities(List<PhoneNumberEntity> phoneNumberEntities) {
         this.phoneNumberEntities = phoneNumberEntities;
     }
-
 
     @Override
     public boolean equals(Object other) {

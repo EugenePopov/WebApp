@@ -25,11 +25,16 @@ public class JsonValidator {
         return mapper.readTree(content);
     }
 
-
-    boolean isValid(String json) throws Exception {
+    /**
+     * Method verifies if received Json satisfies Json schema.
+     * @param json received JSON
+     * @return true if json is valid, otherwise - false
+     * @throws Exception at parsing Json schema
+     */
+    public boolean isValid(String json) throws Exception {
 
         //TODO: change path
-        String fileName = "E:\\UTM\\Anul_IV\\PAD\\Labs\\lab6\\schema.json";
+        String fileName = "C:\\Users\\epopov\\IdeaProjects\\WebApp\\src\\main\\resources\\report-schema.json";
         String jsonSchema = "";
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {

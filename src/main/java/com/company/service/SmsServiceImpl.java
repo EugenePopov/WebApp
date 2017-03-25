@@ -14,7 +14,6 @@ public class SmsServiceImpl implements SmsService{
 
     @Autowired
     private SmsDao smsDao;
-
     public List<SmsEntity> getAllSms() {
         return smsDao.getAllSms();
     }
