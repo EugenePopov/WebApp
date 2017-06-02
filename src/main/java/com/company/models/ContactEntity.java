@@ -1,13 +1,6 @@
 package com.company.models;
 
-import com.google.gson.annotations.Expose;
-import org.hibernate.annotations.*;
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -19,24 +12,19 @@ public class ContactEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true)
-    @Expose
     private int id;
 
     @Column(name = "name")
-    @Expose
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "report_id", nullable = false)
-    private ReportEntity report;
+    private String number;
 
-    @OneToMany(mappedBy = "contactEntity",  cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @Expose
-    List<PhoneNumberEntity> phoneNumberEntities = new ArrayList<>();
+    public String getNumber() {
+        return number;
+    }
 
-    public void setReport(ReportEntity report) {
-        this.report = report;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public int getId() {
@@ -49,10 +37,6 @@ public class ContactEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setPhoneNumberEntities(List<PhoneNumberEntity> phoneNumberEntities) {
-        this.phoneNumberEntities = phoneNumberEntities;
     }
 
     @Override
@@ -68,7 +52,6 @@ public class ContactEntity {
 
         return Objects.equals(this.id, ((ContactEntity) other).getId()) &&
                 Objects.equals(this.name, ((ContactEntity) other).getName());
-
     }
 
     @Override
@@ -80,9 +63,9 @@ public class ContactEntity {
     @Override
     public String toString() {
         return "\n\t\tContactEntity{\n" +
-                "\t\t\tid=" + id +  ",\n" +
-                "\t\t\tname='" + name + '\'' +  ",\n" +
-                "\t\tPhoneNumberEntities" + phoneNumberEntities + "\n" +
+                "\t\t\tid=" + id + ",\n" +
+                "\t\t\tname='" + name + '\'' + ",\n" +
+                "\t\tnumber:" + number + "\n" +
                 "\t\t}";
     }
 }

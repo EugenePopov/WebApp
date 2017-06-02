@@ -1,19 +1,12 @@
 package com.company.models;
 
-import com.google.gson.annotations.Expose;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "reports")
@@ -21,23 +14,31 @@ public class ReportEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true)
-    @Expose
+    @Column(name = "report_id", unique = true)
     private long id;
 
-    @Column(name = "report_date", columnDefinition = "DATETIME")
-    @Expose
+    @Column(name = "report_date")
     private String date;
 
-    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_id")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @Expose
     private List<SmsEntity> smsEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_id")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @Expose
+    private List<CallEntity> calls = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<ContactEntity> contactEntities = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Location> locations = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -55,38 +56,32 @@ public class ReportEntity {
         this.smsEntities = smsEntities;
     }
 
-    public void setContactEntities(List<ContactEntity> contactEntities) {
-        this.contactEntities = contactEntities;
-    }
-
     public List<SmsEntity> getSmsEntities() {
         return smsEntities;
+    }
+
+    public void setContactEntities(List<ContactEntity> contactEntities) {
+        this.contactEntities = contactEntities;
     }
 
     public List<ContactEntity> getContactEntities() {
         return contactEntities;
     }
 
-    @Override
-    public boolean equals(Object other) {
-
-        if (this == other) {
-            return true;
-        }
-        //noinspection SimplifiableIfStatement
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-
-        return Objects.equals(this.id, ((ReportEntity) other).getId()) &&
-                Objects.equals(this.date, ((ReportEntity) other).getDate());
-
+    public List<Location> getLocations() {
+        return locations;
     }
 
-    @Override
-    public int hashCode() {
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
 
-        return Objects.hash(id, date);
+    public List<CallEntity> getCalls() {
+        return calls;
+    }
+
+    public void setCalls(List<CallEntity> calls) {
+        this.calls = calls;
     }
 
     @Transactional
@@ -97,6 +92,8 @@ public class ReportEntity {
                 "\tdate:" + date + ",\n" +
                 "\tsms:" + smsEntities + ",\n" +
                 "\tcontacts:" + contactEntities + "\n" +
+                "\tcalls:" + calls + "\n" +
+                "\tlocations:" + locations + "\n" +
                 '}';
     }
 }

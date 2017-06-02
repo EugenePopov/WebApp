@@ -9,22 +9,22 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages= "com.company")
+@ComponentScan(basePackages = "com.company")
 @EnableWebMvc
-public class MvcConfiguration extends WebMvcConfigurerAdapter{
+public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
-	@Bean
-	public ViewResolver getViewResolver(){
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
-		//resolver.setSuffix(".jsp");
-		return resolver;
-	}
-	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-	}
+    @Bean
+    public ViewResolver getViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        //resolver.setSuffix(".jsp");
+        return resolver;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -36,6 +36,4 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-
-
 }

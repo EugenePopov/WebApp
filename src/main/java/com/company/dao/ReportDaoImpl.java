@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ReportDaoImpl implements ReportDao{
+public class ReportDaoImpl implements ReportDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -19,7 +19,7 @@ public class ReportDaoImpl implements ReportDao{
     }
 
     @SuppressWarnings("unchecked")
-    public List<ReportEntity> getReports(){
+    public List<ReportEntity> getReports() {
         return getCurrentSession().createQuery("from ReportEntity ").list();
     }
 

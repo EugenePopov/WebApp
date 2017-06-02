@@ -1,47 +1,39 @@
 {
   "date": "2017-03-22",
-  "sms": [
+  "smsEntities": [
     {
       "address": "078711930",
       "message": "Hello",
-      "date": "2017-03-22 16:31:17",
-      "smsType": "incoming"
+      "date": "2017-03-22 16:31:17"
     },
     {
       "address": "068751938",
       "message": "Privet",
-      "date": "2017-03-22 16:31:17",
-      "smsType": "outcoming"
+      "date": "2017-03-22 16:31:17"
     },
     {
       "address": "067458123",
       "message": "Noroc",
-      "date": "2017-03-22 16:31:17",
-      "smsType": "incoming"
+      "date": "2017-03-22 16:31:17"
     }
   ],
-  "contacs": [
+  "contactEntities": [
     {
       "name": "Peter",
-      "numbers": [
-        {
-          "number": "022566335"
-        },
-        {
-          "number": "068540681"
-        }
-      ]
+      "number": "068540681"
     },
     {
       "name": "Bob",
-      "numbers": [
-        {
-          "number": "022779904"
-        },
-        {
-          "number": "060757613"
-        }
-      ]
+      "number": "060757613"
+    }
+  ],
+  "calls":[
+    {
+      "number":"069622936",
+      "duration":"56",
+      "name":"Vasea",
+      "date":"1546548651",
+      "type": 1
     }
   ]
 }

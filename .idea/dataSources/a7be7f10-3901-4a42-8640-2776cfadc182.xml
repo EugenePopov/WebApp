@@ -13,5 +13,169 @@
     <schema id="7" parent="1" name="sys"/>
     <schema id="8" parent="1" name="world"/>
     <schema id="9" parent="1" name="vault"/>
+    <table id="10" parent="2" name="calls"/>
+    <table id="11" parent="2" name="contacts"/>
+    <table id="12" parent="2" name="hibernate_sequence"/>
+    <table id="13" parent="2" name="locations"/>
+    <table id="14" parent="2" name="reports"/>
+    <table id="15" parent="2" name="sms"/>
+    <column id="16" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="17" parent="10" name="date">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="18" parent="10" name="duration">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="19" parent="10" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="20" parent="10" name="number">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="21" parent="10" name="type">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="22" parent="10" name="report_id">
+      <Position>7</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="23" parent="10" name="FKh5lt00jxfb84ket3rfouixfj8">
+      <ColNames>report_id</ColNames>
+    </index>
+    <key id="24" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="10" name="FKh5lt00jxfb84ket3rfouixfj8">
+      <ColNames>report_id</ColNames>
+      <RefSchemaName>collected_data</RefSchemaName>
+      <RefTableName>reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <column id="26" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="28" parent="11" name="number">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="29" parent="11" name="report_id">
+      <Position>4</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="30" parent="11" name="FKlm7k6tldotaoj59myayur9gae">
+      <ColNames>report_id</ColNames>
+    </index>
+    <key id="31" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="32" parent="11" name="FKlm7k6tldotaoj59myayur9gae">
+      <ColNames>report_id</ColNames>
+      <RefSchemaName>collected_data</RefSchemaName>
+      <RefTableName>reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <column id="33" parent="12" name="next_val">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="34" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="35" parent="13" name="latitude">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="36" parent="13" name="longitude">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="37" parent="13" name="report_id">
+      <Position>4</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="38" parent="13" name="FKfa8vncllcdy0njb2f4kkhpiba">
+      <ColNames>report_id</ColNames>
+    </index>
+    <key id="39" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="40" parent="13" name="FKfa8vncllcdy0njb2f4kkhpiba">
+      <ColNames>report_id</ColNames>
+      <RefSchemaName>collected_data</RefSchemaName>
+      <RefTableName>reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <column id="41" parent="14" name="report_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="42" parent="14" name="report_date">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="43" parent="14" name="PRIMARY">
+      <ColNames>report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="45" parent="15" name="address">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="46" parent="15" name="sms_date">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="47" parent="15" name="message">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="48" parent="15" name="report_id">
+      <Position>5</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <index id="49" parent="15" name="FK8lltt5idtk3d5g9dqca946dro">
+      <ColNames>report_id</ColNames>
+    </index>
+    <key id="50" parent="15" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="51" parent="15" name="FK8lltt5idtk3d5g9dqca946dro">
+      <ColNames>report_id</ColNames>
+      <RefSchemaName>collected_data</RefSchemaName>
+      <RefTableName>reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

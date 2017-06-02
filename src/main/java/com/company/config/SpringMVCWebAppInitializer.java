@@ -6,7 +6,7 @@ public class SpringMVCWebAppInitializer extends AbstractAnnotationConfigDispatch
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { MvcConfiguration.class };
+        return new Class[]{MvcConfiguration.class};
     }
 
     @Override
@@ -16,7 +16,7 @@ public class SpringMVCWebAppInitializer extends AbstractAnnotationConfigDispatch
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/" };
+        return new String[]{"/"};
     }
 
 }

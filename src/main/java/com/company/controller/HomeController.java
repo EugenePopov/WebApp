@@ -1,7 +1,6 @@
 package com.company.controller;
 
 import com.company.models.ReportEntity;
-import com.company.service.JsonValidator;
 import com.company.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +20,6 @@ public class HomeController {
 
     @Autowired
     private ReportService reportService;
-    @Autowired
-    private JsonValidator jsonValidator;
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public ModelAndView getReport(HttpServletResponse response) throws IOException {
@@ -40,9 +37,7 @@ public class HomeController {
 
         ModelAndView modelAndView = new ModelAndView("report.jsp");
 
-        if (jsonValidator.isValid(httpBody)) {
-            reportService.putReport(httpBody);
-        }
+        reportService.putReport(httpBody);
 
         return modelAndView;
     }

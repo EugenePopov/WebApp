@@ -27,18 +27,6 @@ public class SmsEntity {
     @Expose
     private String date;
 
-    @Column(name = "sms_type")
-    @Expose
-    private String smsType;
-
-    @ManyToOne
-    @JoinColumn(name = "report_id", nullable = false)
-    private ReportEntity report;
-
-    public void setReport(ReportEntity report) {
-        this.report = report;
-    }
-
     public long getId() {
         return id;
     }
@@ -67,14 +55,6 @@ public class SmsEntity {
         this.date = date;
     }
 
-    public String getSmsType() {
-        return smsType;
-    }
-
-    public void setSmsType(String smsType) {
-        this.smsType = smsType;
-    }
-
     @Override
     public boolean equals(Object other) {
 
@@ -89,18 +69,12 @@ public class SmsEntity {
         return Objects.equals(this.id, ((SmsEntity) other).getId()) &&
                 Objects.equals(this.address, ((SmsEntity) other).getAddress()) &&
                 Objects.equals(this.message, ((SmsEntity) other).getMessage()) &&
-                Objects.equals(this.date, ((SmsEntity) other).getDate()) &&
-                Objects.equals(this.smsType, ((SmsEntity) other).getSmsType());
-
-    }
-
-    public ReportEntity getReport() {
-        return this.report;
+                Objects.equals(this.date, ((SmsEntity) other).getDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, message, date, smsType);
+        return Objects.hash(id, address, message, date);
     }
 
     @Override
@@ -110,7 +84,6 @@ public class SmsEntity {
                 "\t\t\taddress='" + address + '\'' + ",\n" +
                 "\t\t\tmessage='" + message + '\'' + ",\n" +
                 "\t\t\tdate='" + date + '\'' + "\n" +
-                "\t\t\tsmsType='" + smsType + '\'' + "\n" +
                 "\t\t}";
     }
 }
