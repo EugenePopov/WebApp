@@ -1,57 +1,73 @@
 package com.company.controller;
 
-import java.io.IOException;
-import java.util.List;
-import javax.servlet.http.HttpServletResponse;
 import com.company.models.ReportEntity;
-import com.company.models.SmsEntity;
 import com.company.service.JsonValidator;
 import com.company.service.ReportService;
-import com.company.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+@SuppressWarnings("SpringAutowiredFieldsWarningInspection")
 @Controller
 public class HomeController {
 
-	@Autowired
-	private SmsService smsService;
-	@Autowired
-	private ReportService reportService;
+    @Autowired
+    private ReportService reportService;
+    @Autowired
+    private JsonValidator jsonValidator;
 
-	@RequestMapping(value="/sms" )
-	public ModelAndView test(HttpServletResponse response) throws IOException{
+    @RequestMapping(value = "/report", method = RequestMethod.GET)
+    public ModelAndView getReport(HttpServletResponse response) throws IOException {
 
-		ModelAndView mv = new ModelAndView("list-of-sms");
-		List<SmsEntity> smsList = smsService.getAllSms();
-		mv.addObject("smsList", smsList);
+        ModelAndView mv = new ModelAndView("report.jsp");
+        List<ReportEntity> reports = reportService.getReports();
 
-		return mv;
-	}
+        mv.addObject("reports", reports);
 
-	@RequestMapping(value="/report", method = RequestMethod.GET )
-	public ModelAndView report(HttpServletResponse response) throws IOException{
+        return mv;
+    }
 
-		ModelAndView mv = new ModelAndView("report");
-		List<ReportEntity> reports = reportService.getReports();
+    @RequestMapping(value = "/api/report", method = RequestMethod.POST, consumes = "application/json")
+    public ModelAndView postReport(@RequestBody String httpBody) throws Exception {
 
-		mv.addObject("reports", reports);
+        ModelAndView modelAndView = new ModelAndView("report.jsp");
 
-		return mv;
-	}
-
-	//TODO: Try to wire objects via Spring context
-	@RequestMapping(value="/report", method= RequestMethod.POST)
-	public ModelAndView editingTeam(@RequestBody String httpBody) throws Exception {
-
-		ModelAndView modelAndView = new ModelAndView("report");
-
-        if(new JsonValidator().isValid(httpBody)){
+        if (jsonValidator.isValid(httpBody)) {
             reportService.putReport(httpBody);
         }
 
-		return modelAndView;
-	}
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+                              @RequestParam(value = "logout", required = false) String logout) throws Exception {
+
+        ModelAndView modelAndView = new ModelAndView("login/login.html");
+
+        if (error != null) {
+            modelAndView.addObject("error", "Invalid credentials provided");
+        }
+
+        if (logout != null) {
+            modelAndView.addObject("message", "Logged out successfully");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/try", method = RequestMethod.GET)
+    public String tryReturn() {
+
+        return "index.html";
+    }
 }

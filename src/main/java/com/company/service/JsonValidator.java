@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.ValidationMessage;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Component
 public class JsonValidator {
 
     private JsonSchema getJsonSchemaFromStringContent(String schemaContent) throws Exception {
@@ -27,6 +30,7 @@ public class JsonValidator {
 
     /**
      * Method verifies if received Json satisfies Json schema.
+     *
      * @param json received JSON
      * @return true if json is valid, otherwise - false
      * @throws Exception at parsing Json schema
@@ -34,7 +38,8 @@ public class JsonValidator {
     public boolean isValid(String json) throws Exception {
 
         //TODO: change path
-        String fileName = "C:\\Users\\epopov\\IdeaProjects\\WebApp\\src\\main\\resources\\report-schema.json";
+        String fileName = "C:\\Users\\Eugene\\Desktop\\tanea\\WebApp\\src\\main\\resources\\report" +
+                "-schema.json";
         String jsonSchema = "";
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
@@ -45,7 +50,7 @@ public class JsonValidator {
             e.printStackTrace();
         }
 
-        JsonSchema schema =getJsonSchemaFromStringContent(jsonSchema);
+        JsonSchema schema = getJsonSchemaFromStringContent(jsonSchema);
 
         Set<ValidationMessage> errors = schema.validate(getJsonNodeFromStringContent(json));
 

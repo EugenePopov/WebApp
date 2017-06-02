@@ -18,6 +18,10 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: cglib:cglib-nodep:2.2.2" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.2.9.Final" />

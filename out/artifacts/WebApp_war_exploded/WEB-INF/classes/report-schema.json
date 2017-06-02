@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string", "maxLength": "15", "required": "true"
+    },
+    "smsList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address":{
+            "type": "string", "maxLength": "20"
+          },
+          "message":{
+            "type": "string", "maxLength": "250"
+          },
+          "date":{
+            "type": "string", "maxLength": "25"
+          },
+          "smsType":{
+            "type": "string", "maxLength": "9", "minLength": "8"
+          }
+        }
+      }
+    },
+    "contactsList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string", "maxLength": "25"
+          },
+          "numbers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": "string", "maxLength": "20"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["date"]
+}

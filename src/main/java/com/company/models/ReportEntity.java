@@ -22,17 +22,21 @@ public class ReportEntity {
     @Id
     @GeneratedValue
     @Column(name = "id", unique = true)
+    @Expose
     private long id;
 
     @Column(name = "report_date", columnDefinition = "DATETIME")
+    @Expose
     private String date;
 
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
     private List<SmsEntity> smsEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
     private List<ContactEntity> contactEntities = new ArrayList<>();
 
     public long getId() {
@@ -88,11 +92,11 @@ public class ReportEntity {
     @Transactional
     @Override
     public String toString() {
-        return "ReportEntity{\n" +
-                "\tid=" + id + ",\n" +
-                "\tdate=" + date + ",\n" +
-                "\tsmsEntities=" + smsEntities + ",\n" +
-                "\tcontactEntities=" + contactEntities + "\n" +
+        return "{\n" +
+                "\tid:" + id + ",\n" +
+                "\tdate:" + date + ",\n" +
+                "\tsms:" + smsEntities + ",\n" +
+                "\tcontacts:" + contactEntities + "\n" +
                 '}';
     }
 }

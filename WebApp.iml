@@ -37,6 +37,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Hibernate 5.2.3-5.2.3" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:6.0.6" level="project" />
+    <orderEntry type="library" name="org.springframework.security:spring-security-web:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="react-15.0.1" level="application" />
+    <orderEntry type="library" name="react-dom-15.0.1" level="application" />
+    <orderEntry type="library" name="browser" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.7.RELEASE" level="project" />
@@ -49,6 +54,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:4.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:4.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:3.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: cglib:cglib-nodep:2.2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.4" level="project" />

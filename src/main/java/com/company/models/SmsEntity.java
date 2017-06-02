@@ -1,5 +1,7 @@
 package com.company.models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,18 +12,23 @@ public class SmsEntity {
     @Id
     @GeneratedValue
     @Column(name = "id", unique = true)
+    @Expose
     private long id;
 
     @Column(name = "address")
+    @Expose
     private String address;
 
     @Column(name = "message")
+    @Expose
     private String message;
 
     @Column(name = "sms_date")
+    @Expose
     private String date;
 
     @Column(name = "sms_type")
+    @Expose
     private String smsType;
 
     @ManyToOne
@@ -98,8 +105,8 @@ public class SmsEntity {
 
     @Override
     public String toString() {
-        return "\n\t\tSmsEntity{\n" +
-                "\t\t\tid=" + id + ",\n" +
+        return "\n\t\t{\n" +
+                "\t\t\tid:" + id + ",\n" +
                 "\t\t\taddress='" + address + '\'' + ",\n" +
                 "\t\t\tmessage='" + message + '\'' + ",\n" +
                 "\t\t\tdate='" + date + '\'' + "\n" +

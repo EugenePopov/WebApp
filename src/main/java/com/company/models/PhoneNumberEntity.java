@@ -1,5 +1,7 @@
 package com.company.models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -9,12 +11,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "phone_numbers")
 public class PhoneNumberEntity {
 
-
+    @Expose
     private String number;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "number_id", unique = true)
+    @Expose
     private long id;
 
     @ManyToOne()

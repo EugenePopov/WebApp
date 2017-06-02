@@ -1,5 +1,6 @@
 package com.company.models;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -18,9 +19,11 @@ public class ContactEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", unique = true)
+    @Expose
     private int id;
 
     @Column(name = "name")
+    @Expose
     private String name;
 
     @ManyToOne
@@ -29,6 +32,7 @@ public class ContactEntity {
 
     @OneToMany(mappedBy = "contactEntity",  cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @Expose
     List<PhoneNumberEntity> phoneNumberEntities = new ArrayList<>();
 
     public void setReport(ReportEntity report) {
