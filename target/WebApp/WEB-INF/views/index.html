@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>React + Spring</title>
+    <title>Reports Page</title>
 </head>
 <body>
 <div id='root'></div>
@@ -14,54 +14,206 @@
 
 <script type="text/babel">
 
-    var Report = React.createClass({
+    let Sms = React.createClass({
         render: function () {
             return (
                     <tr>
-                        <td>{this.props.date}</td>
+                        <td>{this.props.entry.address}</td>
+                        <td>{this.props.entry.message}</td>
+                        <td>{this.props.entry.date}</td>
+                        <td>{this.props.entry.type}</td>
+                        <td>{this.props.entry.readState}</td>
                     </tr>);
         }
     });
 
-    var ReportTable = React.createClass({
+    let SmsTable = React.createClass({
         render: function () {
             var rows = [];
+            this.props.smsList.forEach(function (sms) {
+                rows.push(<Sms entry={sms}/>);
+            });
+            console.log(rows);
+            return (
+                    <div className="container">
+                        <table className="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Address</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Read State</th>
+                            </tr>
+                            </thead>
+                            <tbody>{rows}</tbody>
+                        </table>
+                    </div>);
+        }
+    });
+
+    let Call = React.createClass({
+        render: function () {
+            return (
+                    <tr>
+                        <td>{this.props.entry.number}</td>
+                        <td>{this.props.entry.duration}</td>
+                        <td>{this.props.entry.name}</td>
+                        <td>{this.props.entry.date}</td>
+                        <td>{this.props.entry.type}</td>
+                    </tr>);
+        }
+    });
+
+    let CallTable = React.createClass({
+        render: function () {
+            let rows = [];
+            this.props.callList.forEach(function (call) {
+                rows.push(<Call entry={call}/>);
+            });
+            console.log(rows);
+            return (
+                    <div className="container">
+                        <table className="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Address</th>
+                                <th>Duration</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                            </tr>
+                            </thead>
+                            <tbody>{rows}</tbody>
+                        </table>
+                    </div>);
+        }
+    });
+
+    let Contact = React.createClass({
+        render: function () {
+            return (
+                    <tr>
+                        <td>{this.props.entry.name}</td>
+                        <td>{this.props.entry.number}</td>
+                    </tr>);
+        }
+    });
+
+    let ContactTable = React.createClass({
+        render: function () {
+            let rows = [];
+
+            this.props.contactList.forEach(function (contact) {
+                rows.push(<Contact entry={contact}/>);
+            });
+            console.log(rows);
+            return (
+                    <div className="container">
+                        <table className="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                            </tr>
+                            </thead>
+                            <tbody>{rows}</tbody>
+                        </table>
+                    </div>);
+        }
+    });
+
+    let Location = React.createClass({
+        render: function () {
+            return (
+                    <tr>
+                        <td>{this.props.entry.latitude}</td>
+                        <td>{this.props.entry.longitude}</td>
+                    </tr>);
+        }
+    });
+
+    let LocationTable = React.createClass({
+        render: function () {
+            let rows = [];
+
+            this.props.locationList.forEach(function (location) {
+                rows.push(<Location entry={location}/>);
+            });
+            console.log(rows);
+            return (
+                    <div className="container">
+                        <table className="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                            </thead>
+                            <tbody>{rows}</tbody>
+                        </table>
+                    </div>);
+        }
+    });
+
+    let Report = React.createClass({
+
+        render: function () {
+            return (
+                    <tr>
+                        <td>{this.props.date}</td>
+                        <td>
+                            <SmsTable smsList={this.props.smses}/>
+                            <br/>
+                            <CallTable callList={this.props.calls}/>
+                            <br/>
+                            <ContactTable contactList={this.props.contacts}/>
+                            <br/>
+                            <LocationTable locationList={this.props.locations}/>
+                        </td>
+                    </tr>);
+        }
+    });
+
+    let ReportTable = React.createClass({
+        render: function () {
+            let rows = [];
+
                         this.props.dates.forEach(function (date) {
-             rows.push(<Report date={date}/>);
+             rows.push(<Report date={date.date} smses={date.smsEntities}
+                                calls={date.calls} contacts={date.contactEntities}
+                                locations={date.locations}/>);
              });
-                        console.log(rows);
             return (
                     <div className="container">
                         <table className="table table-striped">
                             <thead>
                             <tr>
                                 <th>Date</th>
+                                <th>Contents</th>
                             </tr>
                             </thead>
                             <tbody>{rows}</tbody>
                         </table>
                     </div>);
-
         }
     });
 
-    var App = React.createClass({
+    let App = React.createClass({
 
-        loadEmployeesFromServer: function () {
-            var self = this;
+        loadReportsFromServer: function () {
+            let self = this;
             $.ajax({
                 url: "http://localhost:8080/entity"
             }).then(function (data) {
-                //self.setState({reports: data}, null);
-                var obj = jQuery.parseJSON(data);
-                var dates = [];
+                let obj = jQuery.parseJSON(data);
+                let reports = [];
 
                 jQuery(obj).each(function (i, item) {
-                    dates.push(item.date)
-                })
+                    reports.push(item);
+                });
 
-                console.log(dates);
-                self.setState({dates: dates}, null);
+                self.setState({dates: reports}, null);
             });
         },
 
@@ -71,20 +223,13 @@
 
         componentDidMount: function () {
 
-            this.loadEmployeesFromServer();
+            this.loadReportsFromServer();
         },
 
         render() {
             return ( <ReportTable dates={this.state.dates}/> );
         }
     });
-
-    var EMPLOYEES = [
-        {name: 'Joe Biden', age: 45, years: 5},
-        {name: 'President Obama', age: 54, years: 8},
-        {name: 'Crystal Mac', age: 34, years: 12},
-        {name: 'James Henry', age: 33, years: 2}
-    ];
 
     ReactDOM.render(<App />, document.getElementById('root'));
 

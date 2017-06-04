@@ -24,7 +24,7 @@ public class RestController {
 
         List<ReportEntity> reports = reportService.getReports();
 
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(reports);
 
         return json;

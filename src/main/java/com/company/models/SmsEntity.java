@@ -1,8 +1,10 @@
 package com.company.models;
 
-import com.google.gson.annotations.Expose;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
@@ -12,20 +14,22 @@ public class SmsEntity {
     @Id
     @GeneratedValue
     @Column(name = "id", unique = true)
-    @Expose
     private long id;
 
     @Column(name = "address")
-    @Expose
     private String address;
 
-    @Column(name = "message")
-    @Expose
+    @Column(name = "message", columnDefinition="TEXT")
     private String message;
 
-    @Column(name = "sms_date")
-    @Expose
+    @Column(name = "date")
     private String date;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "read_state")
+    private String readState;
 
     public long getId() {
         return id;
@@ -55,26 +59,12 @@ public class SmsEntity {
         this.date = date;
     }
 
-    @Override
-    public boolean equals(Object other) {
-
-        if (this == other) {
-            return true;
-        }
-        //noinspection SimplifiableIfStatement
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-
-        return Objects.equals(this.id, ((SmsEntity) other).getId()) &&
-                Objects.equals(this.address, ((SmsEntity) other).getAddress()) &&
-                Objects.equals(this.message, ((SmsEntity) other).getMessage()) &&
-                Objects.equals(this.date, ((SmsEntity) other).getDate());
+    public String getType() {
+        return type;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, address, message, date);
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

@@ -24,7 +24,7 @@
     },
     {
       "name": "Bob",
-      "number": "060757613"
+      "numbers": "060757613"
     }
   ],
   "calls":[
@@ -34,6 +34,16 @@
       "name":"Vasea",
       "date":"1546548651",
       "type": 1
+    }
+  ],
+  "locations": [
+    {
+      "latitude": "49.654654",
+      "longitude": "56.65465465"
+    },
+    {
+      "latitude": "12.4864",
+      "longitude": "39.498465"
     }
   ]
 }

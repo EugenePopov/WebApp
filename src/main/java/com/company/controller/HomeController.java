@@ -22,14 +22,15 @@ public class HomeController {
     private ReportService reportService;
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
-    public ModelAndView getReport(HttpServletResponse response) throws IOException {
+    public String getReport(HttpServletResponse response) throws IOException {
 
-        ModelAndView mv = new ModelAndView("report.jsp");
+/*        ModelAndView mv = new ModelAndView("report.jsp");
         List<ReportEntity> reports = reportService.getReports();
 
         mv.addObject("reports", reports);
 
-        return mv;
+        return mv;*/
+        return "index.html";
     }
 
     @RequestMapping(value = "/api/report", method = RequestMethod.POST, consumes = "application/json")
